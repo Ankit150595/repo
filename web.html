@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cont{
+            display: flex;
+            width: 90vw;
+            height: 100vh;
+            margin: auto;
+            border: 1px solid black;
+        }
+        #cont > div:nth-child(1){
+            width: 25%;
+            height: 100%;
+            border: 1px solid black;
+        }
+         #cont > div:nth-child(1)>form{
+           margin: auto;
+        }
+        #cont > div:nth-child(2){
+            display: grid;
+            grid-template-columns: auto auto auto;
+            width: 75%;
+            height: 100%;
+            border: 1px solid black;
+        }
+        form{
+            width: 80%;
+            margin: auto;
+            padding-top: 15%;
+        }
+        input{
+            margin-bottom: 8%;
+
+        }
+        .lay1{
+            width: 250px;
+            height: 300px;
+            border: 1px solid black;
+            margin: 3%;
+
+        }
+        .rem{
+            margin-top: 120px;
+            margin-left: 50px;
+            margin-right: 30px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <div>
+            <form>
+                <input type="text" placeholder="NAME" id="name">
+                <input type="number" placeholder="PRICE" id="price">
+                <input type="text" placeholder="DESCRIPTION" id="des">
+                <input type="number" placeholder="ESTIMATED DELIVERY" id="est">
+                <input type="text" placeholder="URL(OPTIONAL)" id="url"><br>
+                <button>Add Product</button>
+            </form>
+        </div>
+        <div id="secondDiv"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    let cont = document.getElementById("cont");
+    let form = document.querySelector("form");
+   
+    let btn = document.querySelector("button")
+
+    btn.addEventListener("click", product)
+    function product(e){
+        e.preventDefault();
+        let name = document.getElementById("name");
+        let price = document.getElementById("price");
+        let des = document.getElementById("des");
+        let est = document.getElementById("est");
+        let url = document.getElementById("url");
+        let secDiv = document.getElementById("secondDiv");
+
+        let pro1 = document.createElement("div");
+        pro1.setAttribute("class", "lay1");
+        let remove = document.createElement("button");
+        remove.innerText="Remove";
+        remove.setAttribute("class","rem")
+        let update = document.createElement("button");
+        update.innerText="Update";
+        update.setAttribute("class", "upd")
+        var p1 = document.createElement("p");
+        p1.textContent= name.value;
+        var p2 = document.createElement("p");
+        p2.textContent = price.value;
+        var p3 = document.createElement("p");
+        p3.textContent = des.value;
+        var p4 = document.createElement("p");
+        p4.textContent = est.value;
+        pro1.append(p1,p2,p3,p4);
+        pro1.append(p1, p2, p3,p4,remove,update);
+        secDiv.append(pro1);
+
+        remove.addEventListener("click",rem)
+       update.addEventListener("click",upd)
+    }
+
+    function rem(s){
+        s.target.parentNode.remove()
+    }
+
+    function upd(q){
+        var new_price = prompt("Enter new price");
+        return new_price;
+    }
+</script>
